@@ -12,7 +12,7 @@ def cleanString(string):
     return "Not Provided"
 
 
-for dirpath, dirnames, files in os.walk("../Non-NanoPMC"):
+for dirpath, dirnames, files in os.walk("../NanoPMC"):
     json_list = []
     for name in files:
         if name.lower().endswith('.xml'):
@@ -22,7 +22,6 @@ for dirpath, dirnames, files in os.walk("../Non-NanoPMC"):
             root = parsed_xml.getroot()
             front = parsed_xml.find('front')
             meta = front.find("article-meta")
-
 
             for t in front.iter('article-title'):
                 article_title = ''.join(t.itertext())
@@ -56,6 +55,6 @@ for dirpath, dirnames, files in os.walk("../Non-NanoPMC"):
             json_object['title'] = cleanString(article_title)
             json_list.append(json_object)
 
-    complete_path = os.path.join("../JSON", "Non-Nano.json")
+    complete_path = os.path.join("../JSON", "Nano.json")
     with open(complete_path, "w") as jsonlfile:
         jsonlfile.write(json.dumps(json_list, indent=4, separators=(',', ":")))
